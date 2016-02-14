@@ -1,5 +1,5 @@
 
-//Grocery Store Simulation by Michael Smith
+//Grocery Store Simulation by Cornell Michael Smith
 
 
 #include "functions.h"
