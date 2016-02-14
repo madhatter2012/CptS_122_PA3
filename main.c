@@ -1,5 +1,6 @@
 
 //Grocery Store Simulation by Cornell Michael Smith
+//Cpts 122 Spring 2016 of the year of our lord
 
 
 #include "functions.h"
