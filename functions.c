@@ -72,4 +72,17 @@ void dequeue(Queue *pQ, int *customerNumber, int *serviceTime)
 	 //returning pCur-data
 }
 
+void printQueue(Node * queue)
+{
+	int totalTime;
+
+	totalTime = totalTime + queue
+
+	while (queue != NULL)
+	{
+
+
+	}
+
+}
 

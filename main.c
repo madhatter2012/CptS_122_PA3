@@ -33,14 +33,14 @@ int main(void)
 
 		if (expressTime_A == 0)
 		{
+
+			customerNumber++;
 			printf("At %d minutes Customer %d arrived in the express line.\n", totalTime, customerNumber);
 			
 			expressTime_A = rand() % 5 + 1; // range 1-5
 
 			expressService = rand() % 5 + 1; //range 1-5
 			serviceTime
-
-			customerNumber++;
 		}
 
 		if (expressService == 0)
