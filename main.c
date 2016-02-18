@@ -29,6 +29,10 @@ int main(void)
 
 	while (n != totalTime)
 	{
+		
+		
+		
+		
 		expressTime_A--; //decrementing express time
 
 		if (expressTime_A == 0)
@@ -38,7 +42,7 @@ int main(void)
 			expressTime_A = rand() % 5 + 1; // range 1-5
 
 			expressService = rand() % 5 + 1; //range 1-5
-			serviceTime
+			serviceTime;
 
 			customerNumber++;
 		}

@@ -28,10 +28,10 @@ QueueNode *makeNode(int customerNumber, int serviceTime);
 
 int enqueue(Queue *pQ, int customerNumber, int serviceTime);
 
-int dequeue(Queue *pQ, int customerNumber, int serviceTime);
+void dequeue(Queue *pQ, int customerNumber, int serviceTime);
 
-isEmpty(Queue q);
+int isEmpty(Queue q);
 
-//printQueue();
+void printQueue();
 
 #endif

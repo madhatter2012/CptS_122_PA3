@@ -1,10 +1,13 @@
+
 #include "functions.h"
 
 
 
 QueueNode * makeNode(int customerNumber, int serviceTime)
 {
-	QueueNode *pMem = (QueueNode *)malloc(sizeof(Queue));
+	QueueNode *pMem; //creating memory pointer variable
+	//typecasting memory to QueueNode memory type
+	pMem= (QueueNode *)malloc(sizeof(Queue));
 
 	if (pMem != NULL)
 	{
@@ -16,13 +19,14 @@ QueueNode * makeNode(int customerNumber, int serviceTime)
 	return pMem;
 }
 
-isEmpty(Queue q)
+int isEmpty(Queue q)
 {
-	return (q.pHead == NULL);
+	return (q.pHead == NULL); //return is int because 1 = true, 0 false
 }
 
 int enqueue(Queue *pQ, int customerNumber, int serviceTime)
 {
+	//creating new node
 	QueueNode *pMem = makeNode(customerNumber, serviceTime);
 
 	int success = 0;
@@ -35,13 +39,14 @@ int enqueue(Queue *pQ, int customerNumber, int serviceTime)
 		if (pQ->pHead != NULL)
 		{
 			//queue is not empty
-			pQ->pTail->pNext = pMem;
-			pQ->pTail = pMem;
+			(pQ->pTail)->pNext = pMem;
+			pQ->pTail = pMem; //now tail is pointing to new node
 		}
 		else
 		{
 			//queue is empty
-			pQ->pHead = pQ->pTail = pMem;
+			pQ->pHead = pQ->pTail = pMem; //if the queue is empty, the only 
+										//element in the queue is the new node you just created
 		}
 	}
 	return success;
@@ -62,7 +67,7 @@ void dequeue(Queue *pQ, int *customerNumber, int *serviceTime)
 	else
 	{
 		//more than one node in queue
-		pQ->pHead = pQ->pHead->pNext; //setting the pHead pointer to pNext, before removing node 1
+		pQ->pHead = (pQ->pHead)->pNext; //setting the pHead pointer to pNext, before removing node 1
 	}
 
 	customerNumber = pCur->customerNumber;
@@ -72,4 +77,18 @@ void dequeue(Queue *pQ, int *customerNumber, int *serviceTime)
 	 //returning pCur-data
 }
 
+void print(Queue *myQueue)
+{
+	QueueNode *temp = myQueue->pHead; //creating a pointer, temp, pointing to head of queue
 
+	while (temp != NULL) //looping until temp is NULL & queue is ended
+	{
+	
+	//printing by access the temp pointers to structs members
+	printf("%d %d %d\n", temp->customerNumber, temp->serviceTime, temp->totalTime);
+
+	//setting temp to temp->pNext
+	temp = temp->pNext; //use a pointer because pNext is outside the function
+
+	}
+}
