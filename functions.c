@@ -1,13 +1,13 @@
 
 #include "functions.h"
 
-//a better deal
 
-Node * makeNode(int customerNumber, int serviceTime)
+
+QueueNode * makeNode(int customerNumber, int serviceTime)
 {
-	Node *pMem; //creating memory pointer variable
+	QueueNode *pMem; //creating memory pointer variable
 	//typecasting memory to QueueNode memory type
-	pMem= (Node *)malloc(sizeof(Queue));
+	pMem= (QueueNode *)malloc(sizeof(Queue));
 
 	if (pMem != NULL)
 	{
@@ -27,7 +27,7 @@ int isEmpty(Queue q)
 int enqueue(Queue *pQ, int customerNumber, int serviceTime)
 {
 	//creating new node
-	Node *pMem = makeNode(customerNumber, serviceTime);
+	QueueNode *pMem = makeNode(customerNumber, serviceTime);
 
 	int success = 0;
 
@@ -53,11 +53,11 @@ int enqueue(Queue *pQ, int customerNumber, int serviceTime)
 
 }
 
-void dequeue(Queue *pQ, int *customerNumber, int *serviceTime)
+void dequeue(Queue *pQ, int customerNumber, int serviceTime)//changed from * to regular, was this correct?
 {
-	Node *pCur = pQ->pHead; //pCur = mem address of node 1
-	*customerNumber = pCur->customerNumber;
-	*serviceTime = pCur->serviceTime;
+	QueueNode *pCur = pQ->pHead; //pCur = mem address of node 1
+	customerNumber = pCur->customerNumber;
+	serviceTime = pCur->serviceTime;
 	
 	//only one node
 	if (pQ->pHead == pQ->pTail)
@@ -73,19 +73,17 @@ void dequeue(Queue *pQ, int *customerNumber, int *serviceTime)
 	customerNumber = pCur->customerNumber;
 	serviceTime = pCur->serviceTime;
 	free(pCur);
-
-	 //returning pCur-data
 }
 
-void print(Queue *myQueue)
+void printQueue(Queue *myQueue)
 {
-	Node *temp = myQueue->pHead; //creating a pointer, temp, pointing to head of queue
+	QueueNode *temp = myQueue->pHead; //creating a pointer, temp, pointing to head of queue
 
 	while (temp != NULL) //looping until temp is NULL & queue is ended
 	{
 	
 	//printing by access the temp pointers to structs members
-	printf("%d %d %d\n", temp->customerNumber, temp->serviceTime, temp->totalTime);
+		printf("At %d minutes: \n Normal Lane: Customer %d\n Express Lane: Customer %d\n", temp->totalTime, temp->customerNumber, temp->customerNumber);
 
 	//setting temp to temp->pNext
 	temp = temp->pNext; //use a pointer because pNext is outside the function
