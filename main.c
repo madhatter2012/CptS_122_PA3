@@ -10,16 +10,13 @@ int main(void)
 	srand(time(NULL)); //seeding rand() with time
 
 
-	int customerNumber = 0; // customer number
-	int expressTime_A = rand() % 5 + 1; // range 1-5
-	int normalTime_A = rand() % 6 + 3; // range 3-8
-	int expressTime_S = rand() % 5 + 1; //service time
-	int normalTime_S = rand() % 6 + 3;
-	int totalTime = 0; //total time elapsed variable
-	int serviceTime = 0; //time for service
-	int normalService = 0;
-	int expressService = 0;
+	
+	int expressTime = rand() % 5 + 1; // range 1-5
+	int normalTime = rand() % 6 + 3; // range 3-8
 	int n = 0;//user input runtime
+	int totalTime = 0;
+	int customerNumber = 0;
+	int serviceTime = 0;
 
 	Queue express = { NULL, NULL }; //Initializing Queue pointers
 	Queue normal = { NULL, NULL };
@@ -29,10 +26,44 @@ int main(void)
 
 	while (n != totalTime)
 	{
+		if (expressTime == 0)
+		{
+
+			customerNumber++;
+
+			enqueue(express, customerNumber, serviceTime);
+		}
 		
-		
-		
-		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		/*
+
 		expressTime_A--; //decrementing express time
 
 		if (expressTime_A == 0)
@@ -73,6 +104,8 @@ int main(void)
 		
 		totalTime++; //incrementing total time +1
 	} 
+	*/
+
 
 	return 0;
 }

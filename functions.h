@@ -16,19 +16,19 @@ typedef struct queueNode
 					in line before this customer; units in minutes*/
 
 	struct queueNode *pNext;
-}QueueNode; //alt name for "struct queueNode"
+}Node; //alt name for "struct queueNode"
 
 typedef struct queue
 {
-	QueueNode *pHead; //QueueNode pointers to head & tail
-	QueueNode *pTail;
+	Node * pHead; //Node pointers to head & tail
+	Node * pTail;
 }Queue;
 
-QueueNode *makeNode(int customerNumber, int serviceTime);
+Node *makeNode(int customerNumber, int serviceTime);
 
-int enqueue(Queue *pQ, int customerNumber, int serviceTime);
+int enqueue(Node *pQ, int customerNumber, int serviceTime);
 
-void dequeue(Queue *pQ, int customerNumber, int serviceTime);
+void dequeue(Node *pQ, int customerNumber, int serviceTime);
 
 int isEmpty(Queue q);
 
