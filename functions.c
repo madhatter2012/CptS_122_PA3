@@ -53,11 +53,11 @@ int enqueue(Queue *pQ, int customerNumber, int serviceTime)
 
 }
 
-void dequeue(Queue *pQ, int *customerNumber, int *serviceTime)
+void dequeue(Queue *pQ, int customerNumber, int serviceTime)//changed from * to regular, was this correct?
 {
 	QueueNode *pCur = pQ->pHead; //pCur = mem address of node 1
-	*customerNumber = pCur->customerNumber;
-	*serviceTime = pCur->serviceTime;
+	customerNumber = pCur->customerNumber;
+	serviceTime = pCur->serviceTime;
 	
 	//only one node
 	if (pQ->pHead == pQ->pTail)
@@ -73,11 +73,9 @@ void dequeue(Queue *pQ, int *customerNumber, int *serviceTime)
 	customerNumber = pCur->customerNumber;
 	serviceTime = pCur->serviceTime;
 	free(pCur);
-
-	 //returning pCur-data
 }
 
-void print(Queue *myQueue)
+void printQueue(Queue *myQueue)
 {
 	QueueNode *temp = myQueue->pHead; //creating a pointer, temp, pointing to head of queue
 
@@ -85,7 +83,7 @@ void print(Queue *myQueue)
 	{
 	
 	//printing by access the temp pointers to structs members
-	printf("%d %d %d\n", temp->customerNumber, temp->serviceTime, temp->totalTime);
+		printf("At %d minutes: \n Normal Lane: Customer %d\n Express Lane: Customer %d\n", temp->totalTime, temp->customerNumber, temp->customerNumber);
 
 	//setting temp to temp->pNext
 	temp = temp->pNext; //use a pointer because pNext is outside the function

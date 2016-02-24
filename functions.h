@@ -1,6 +1,6 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
-#define CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> //string
@@ -32,6 +32,6 @@ void dequeue(Queue *pQ, int customerNumber, int serviceTime);
 
 int isEmpty(Queue q);
 
-void printQueue();
+void printQueue(Queue *myQueue);
 
 #endif
