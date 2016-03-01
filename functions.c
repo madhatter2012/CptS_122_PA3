@@ -3,11 +3,11 @@
 
 
 
-QueueNode * makeNode(int customerNumber, int serviceTime)
+Node * makeNode(int customerNumber, int serviceTime)
 {
-	QueueNode *pMem; //creating memory pointer variable
+	Node *pMem; //creating memory pointer variable
 	//typecasting memory to QueueNode memory type
-	pMem= (QueueNode *)malloc(sizeof(Queue));
+	pMem= (Node *)malloc(sizeof(Queue));
 
 	if (pMem != NULL)
 	{
@@ -27,7 +27,7 @@ int isEmpty(Queue q)
 int enqueue(Queue *pQ, int customerNumber, int serviceTime)
 {
 	//creating new node
-	QueueNode *pMem = makeNode(customerNumber, serviceTime);
+	Node *pMem = makeNode(customerNumber, serviceTime);
 
 	int success = 0;
 
@@ -50,12 +50,11 @@ int enqueue(Queue *pQ, int customerNumber, int serviceTime)
 		}
 	}
 	return success;
-
 }
 
 void dequeue(Queue *pQ, int customerNumber, int serviceTime)//changed from * to regular, was this correct?
 {
-	QueueNode *pCur = pQ->pHead; //pCur = mem address of node 1
+	Node *pCur = pQ->pHead; //pCur = mem address of node 1
 	customerNumber = pCur->customerNumber;
 	serviceTime = pCur->serviceTime;
 	
@@ -77,7 +76,7 @@ void dequeue(Queue *pQ, int customerNumber, int serviceTime)//changed from * to 
 
 void printQueue(Queue *myQueue)
 {
-	QueueNode *temp = myQueue->pHead; //creating a pointer, temp, pointing to head of queue
+	Node *temp = myQueue->pHead; //creating a pointer, temp, pointing to head of queue
 
 	while (temp != NULL) //looping until temp is NULL & queue is ended
 	{

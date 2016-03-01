@@ -20,15 +20,15 @@ typedef struct queueNode
 
 typedef struct queue
 {
-	Node * pHead; //Node pointers to head & tail
-	Node * pTail;
+	Node *pHead; //Node pointers to head & tail
+	Node *pTail;
 }Queue;
 
 Node *makeNode(int customerNumber, int serviceTime);
 
-int enqueue(Node *pQ, int customerNumber, int serviceTime);
+int enqueue(Queue *pQ, int customerNumber, int serviceTime);
 
-void dequeue(Node *pQ, int customerNumber, int serviceTime);
+void dequeue(Queue *pQ, int customerNumber, int serviceTime);
 
 int isEmpty(Queue q);
 
