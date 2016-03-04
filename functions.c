@@ -3,7 +3,7 @@
 
 
 
-Node * makeNode(int customerNumber, int serviceTime)
+Node * makeNode(int customerNumber, int serviceTime, int totalTime)
 {
 	Node *pMem; //creating memory pointer variable
 	//typecasting memory to QueueNode memory type
@@ -13,6 +13,7 @@ Node * makeNode(int customerNumber, int serviceTime)
 	{
 		pMem->customerNumber = customerNumber;
 		pMem->serviceTime = serviceTime;
+		pMem->totalTime = totalTime;
 		pMem->pNext = NULL;
 	}
 
@@ -24,10 +25,10 @@ int isEmpty(Queue q)
 	return (q.pHead == NULL); //return is int because 1 = true, 0 false
 }
 
-int enqueue(Queue *pQ, int customerNumber, int serviceTime)
+int enqueue(Queue *pQ, int customerNumber, int serviceTime, int totalTime)
 {
 	//creating new node
-	Node *pMem = makeNode(customerNumber, serviceTime);
+	Node *pMem = makeNode(customerNumber, serviceTime, totalTime);
 
 	int success = 0;
 
@@ -52,11 +53,12 @@ int enqueue(Queue *pQ, int customerNumber, int serviceTime)
 	return success;
 }
 
-void dequeue(Queue *pQ, int customerNumber, int serviceTime)//changed from * to regular, was this correct?
+void dequeue(Queue *pQ, int customerNumber, int serviceTime, int totalTime)//changed from * to regular, was this correct?
 {
 	Node *pCur = pQ->pHead; //pCur = mem address of node 1
 	customerNumber = pCur->customerNumber;
 	serviceTime = pCur->serviceTime;
+	totalTime = pCur->totalTime;
 	
 	//only one node
 	if (pQ->pHead == pQ->pTail)
@@ -71,6 +73,7 @@ void dequeue(Queue *pQ, int customerNumber, int serviceTime)//changed from * to 
 
 	customerNumber = pCur->customerNumber;
 	serviceTime = pCur->serviceTime;
+	totalTime = pCur->totalTime;
 	free(pCur);
 }
 

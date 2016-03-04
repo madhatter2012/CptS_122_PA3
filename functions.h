@@ -24,11 +24,11 @@ typedef struct queue
 	Node *pTail;
 }Queue;
 
-Node *makeNode(int customerNumber, int serviceTime);
+Node *makeNode(int customerNumber, int serviceTime, int totalTime);
 
-int enqueue(Queue *pQ, int customerNumber, int serviceTime);
+int enqueue(Queue *pQ, int customerNumber, int serviceTime, int totalTime);
 
-void dequeue(Queue *pQ, int customerNumber, int serviceTime);
+void dequeue(Queue *pQ, int customerNumber, int serviceTime, int totalTime);
 
 int isEmpty(Queue q);
 

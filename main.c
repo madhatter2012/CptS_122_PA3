@@ -14,7 +14,10 @@ int main(void)
 	int normalArrival = rand() % 6 + 3; // range 3-8 arrival time for normal line
 	int expressService = 0; //service time for express lines.
 	int normalService = 0; //service time for normal lines
-	int totalTime = 0; //total time elapsed variable
+	//int elapsedTime = 0; //total time elapsed variable
+	int expressTotal = 0;
+	int normalTotal = 0;
+	int totalTime = 0; //totalTime
 	int custNum = 0; // variable for customer number that i can use when i don't want to use customer number
 
 
@@ -26,7 +29,7 @@ int main(void)
 
 	printf("Enter runtime: "); //prompting & accepting runtime request
 	scanf("%d", &n);
-	printf("this is n: %d\n", n);
+	printf("Your runtime selection is: %d\n", n);
 	printf("If you can see this, good job!\n");
 
 	//enque first 2 cust
@@ -44,8 +47,23 @@ int main(void)
 			customerNumber++;
 
 			 expressService = rand() % 5 + 1; //service time
+
+			 expressTotal = expressTotal + expressService;
 			
-			enqueue(&express, customerNumber, expressService);
+			 /*if (express.pHead != NULL)
+			 {
+				 pCur = express.pHead;
+
+				 while (pCur != NULL)
+				 {
+					 totalTime = pCur->serviceTime;
+					 pCur = pCur->pNext;
+				 }
+
+				 totalTime = totalTime + expressService;
+			 }*/
+
+			enqueue(&express, customerNumber, expressService, expressTotal);
 			printf("At %d minutes Customer %d arrived in the express line.\n", totalTime, customerNumber);
 			
 			 expressArrival = rand() % 5 + 1; // range 1-5
@@ -59,7 +77,9 @@ int main(void)
 
 			normalService = rand() % 6 + 3; //service time for normal lane
 			
-			enqueue(&normal, customerNumber, normalService);
+			normalTotal = normalTotal + normalService;
+
+			enqueue(&normal, customerNumber, normalService, normalTotal);
 			printf("At %d minutes Customer %d arrived in the normal line.\n", totalTime, customerNumber);
 
 			normalArrival = rand() % 6 + 3; // range 3-8, arrival time for normal lane
@@ -72,7 +92,7 @@ int main(void)
 			{
 				custNum = express.pHead->customerNumber; //<--wtf???
 
-				dequeue(&express, customerNumber, expressService);
+				dequeue(&express, customerNumber, expressService, expressTotal);
 				printf("At %d minutes Customer %d left the express line with a service time of %d.\n", totalTime, custNum, expressService);
 			}
 		}
@@ -83,15 +103,11 @@ int main(void)
 			{
 				custNum = normal.pHead->customerNumber;
 
-				dequeue(&express, customerNumber, normalService);
+				dequeue(&express, customerNumber, normalService, normalTotal);
 				printf("At %d minutes Customer %d left the normal line with a service time of %d .\n", totalTime, custNum, normalService);
 			}
 		}
-		//if (totalTime % 10 == 0) //every 10 minutes print queue info
-		//{
-
-		//}
-		
+	
 		//decrementing express & normal service time
 		if (express.pHead != NULL)//if some in que then  
 		{
@@ -106,25 +122,38 @@ int main(void)
 		expressArrival--;
 		normalArrival--;
 		
-		// decrementing total time
+		// incrementing total time
 		totalTime++;
 
 
 		//printing the queue every 10 minutes
 		if (totalTime % 10 == 0)
 		{
-			printf("Here's the Queue: \n");
+			printf("Here's the Express Queue: \n");
 			if (express.pHead != NULL)
 			{
 				pCur = express.pHead;
 
 				while (pCur != NULL)
 				{
-					printf("Customer: %d Total Time: %d", pCur->customerNumber, pCur->totalTime);
+					printf("Customer: %d Total Time: %d\n", pCur->customerNumber, pCur->totalTime);
+					pCur = pCur->pNext;
+				}
+			}
+			printf("Here's the Normal Queue: \n");
+			if (normal.pHead != NULL)
+			{
+				pCur = normal.pHead;
+
+				while (pCur != NULL)
+				{
+					printf("Customer: %d Total Time: %d\n", pCur->customerNumber, pCur->totalTime);
 					pCur = pCur->pNext;
 				}
 			}
 		}
 	} 
+
+	printf("Runtime of %d minutes ended. Simulation Complete. \n", n);
 	return 0;
 }
