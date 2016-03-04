@@ -113,18 +113,32 @@ int main(void)
 		//printing the queue every 10 minutes
 		if (totalTime % 10 == 0)
 		{
-			printf("Here's the Queue: \n");
+			printf("Here's the Express Queue: \n");
 			if (express.pHead != NULL)
 			{
 				pCur = express.pHead;
 
 				while (pCur != NULL)
 				{
-					printf("Customer: %d Total Time: %d", pCur->customerNumber, pCur->totalTime);
+					printf("Customer: %d Total Time: %d\n", pCur->customerNumber, totalTime);
+					pCur = pCur->pNext;
+				}
+			}
+
+			printf("Here's the Normal Queue: \n");
+			if (normal.pHead != NULL)
+			{
+				pCur = normal.pHead;
+
+				while (pCur != NULL)
+				{
+					printf("Customer: %d Total Time: %d\n", pCur->customerNumber, totalTime);
 					pCur = pCur->pNext;
 				}
 			}
 		}
-	} 
+	}
+
+	printf("Runtime of %d is complete. \n Thank you, come again.\n", n);
 	return 0;
 }
